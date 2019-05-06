@@ -1,0 +1,21 @@
+{
+    "short_name": "Vamos",
+    "name": "Vamos",
+    "icons": [
+      {
+        "src": "/assets/images/logo/icon-192.png",
+        "type": "image/png",
+        "sizes": "192x192"
+      },
+      {
+        "src": "/assets/images/logo/icon-512.png",
+        "type": "image/png",
+        "sizes": "512x512"
+      }
+    ],
+    "start_url": "/login/",
+    "background_color": "#ffffff",
+    "display": "standalone",
+    "scope": "/login/",
+    "theme_color": "#ffffff"
+  }

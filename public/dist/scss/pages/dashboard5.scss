@@ -1,0 +1,43 @@
+/*
+Template Name: Admin Template
+Author: Wrappixel
+
+File: scss
+*/
+
+@import '../variable';
+
+#cc-table {
+  span a i {
+    font-size: 25px;
+  }
+  h6 {
+    margin-bottom: 0px;
+  }
+  &.dataTable thead {
+    .sorting:after,
+    .sorting_desc:after,
+    .sorting_asc:after {
+      display: none;
+    }
+  }
+}
+
+.cc-widget {
+  .cc-icon {
+    i {
+      font-size: 50px;
+    }
+  }
+  .cc-details {
+    .growth {
+        color: $cyan;
+    }
+    .up {
+        color: $teal;
+    }
+    .down {
+        color: $red;
+    }
+  }
+}

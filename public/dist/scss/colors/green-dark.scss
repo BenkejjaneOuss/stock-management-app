@@ -1,0 +1,79 @@
+// Green colors
+.skin-green-dark {
+    /*Theme Colors*/
+    $themecolor: #55ce63;
+    $themecolor-dark: #028ee1;
+    $topbar: #55ce63;
+    $sidebar: #272c33;
+    $sidebar-alt:#1f2023;
+    $sidebar-icons: #798699;
+    $sidebar-dark: #181c22;
+    // Topbar
+    .topbar {
+        background: #0178bc;
+        /* Old browsers */
+        background: -moz-linear-gradient(left, #318f94 0%, #5ec58c 100%);
+        /* FF3.6-15 */
+        background: -webkit-linear-gradient(left, #318f94 0%, #5ec58c 100%);
+        /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to right, #318f94 0%, #5ec58c 100%);
+        /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    }
+    //Sidebar
+    .sidebar-nav {
+        ul li a {
+            &.active,
+            &:hover {
+                color: $themecolor;
+                i {
+                    color: $themecolor;
+                }
+            }
+        }
+        > ul > li {
+            &.selected > a {
+                color: $themecolor;
+                
+                i {
+                    color: $themecolor;
+                }
+            }
+        }
+    }
+    
+    //Bread-crumb
+    .page-titles .breadcrumb .breadcrumb-item.active{
+        color: $themecolor;
+    }
+    
+    // Sidebar dark
+    
+    .topbar{
+        .top-navbar .navbar-header .navbar-brand .dark-logo {
+            display: none;
+        }
+        .top-navbar .navbar-header .navbar-brand .light-logo {
+            display: inline-block;
+            color: rgba(255, 255, 255, 0.8);
+        }
+    }    
+    .left-sidebar {
+        background: $sidebar;
+        .user-pro-body{
+            a.link{
+                color:$sidebar-text;
+            }
+        }
+        .nav-text-box{
+            border-color:transparent;
+            background:rgba(0, 0, 0, 0.3); 
+        }
+    }
+    @media (min-width: 768px){
+        &.horizontal-nav .sidebar-nav #sidebarnav > li > ul, &.horizontal-nav .sidebar-nav #sidebarnav > li:hover > a{
+            background: $sidebar-alt; 
+        }
+        
+    }
+    
+}
