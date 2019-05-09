@@ -32,9 +32,9 @@ Route::put('/updateProductCategory', 'ProductController@updateProductCategory');
 
 
 Route::get('/category', 'CategoryController@index')->name('category');
-Route::post('/addCategory', 'CategoryController@addCategory');
-Route::delete('/deleteCategory/{id}', 'CategoryController@deleteCategory');
-Route::put('/updateCategoryName', 'CategoryController@updateCategoryName');
+Route::post('/addCategory', 'CategoryController@addCategory')->name('category.add');
+Route::delete('/deleteCategory/{id}', 'CategoryController@deleteCategory')->name('category.delete');
+Route::put('/updateCategoryName', 'CategoryController@updateCategoryName')->name('category.update');
 
 
 Route::get('/supplier', 'SupplierController@index')->name('supplier');

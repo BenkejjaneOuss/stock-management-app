@@ -17,8 +17,10 @@
     <!-- ============================================================== -->
     <!-- This page CSS -->
     <!-- ============================================================== -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @yield('CssPlugins')
     <!--Selectize -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.default.min.css" rel="stylesheet">
     <!--End selectize -->
     <!-- ============================================================== -->
@@ -34,6 +36,8 @@
 </head>
 
 <body class="horizontal-nav skin-purple fixed-layout" >
+@routes
+<div id="app">
     <!-- ============================================================== -->
     <!-- Preloader - style you can find in spinners.css -->
     <!-- ============================================================== -->
@@ -204,6 +208,7 @@
     <!-- ============================================================== -->
     <!-- All Jquery -->
     <!-- ============================================================== -->
+    </div>
     <script src="{{URL::to('assets/node_modules/jquery/jquery-3.2.1.min.js')}}"></script>
     <!-- Bootstrap popper Core JavaScript -->
     <!--Vue -->
@@ -222,6 +227,14 @@
     <script src="{{URL::to('dist/js/custom.js')}}"></script>
     <!--Selectize -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js"></script>
+
+    <script src="{{URL::to('assets/node_modules/sticky-kit-master/dist/sticky-kit.min.js')}}"></script>
+    <script src="{{URL::to('assets/node_modules/sparkline/jquery.sparkline.min.js')}}"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+
     <!-- ============================================================== -->
     <!-- This page plugins -->
     <!-- ============================================================== -->

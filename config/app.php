@@ -162,6 +162,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Orangehill\Iseed\IseedServiceProvider::class,
+        Tightenco\Ziggy\ZiggyServiceProvider::class,
         'Collective\Html\HtmlServiceProvider',
 
     ],

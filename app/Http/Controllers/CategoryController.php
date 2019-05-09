@@ -24,29 +24,48 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::where('archive', 0)->get(); 
+        $categories = Category::where('archive', 0)->orderBy('created_at', 'desc')->get(); 
         return view('category',compact('categories'));
     }
     public function addCategory(Request $request){
+
+        $result = false;
+
         $category = new Category();
         $category->name = $request->name;
         
-        $category->save();
-        return redirect('/category');      
+        if($category->save()){
+            $result = true;
+        }
+
+        return Response()->json(compact('result','category'));     
     }
     
 
     public function deleteCategory($id){
+        $result = false;
         $category = Category::find($id);
         $category->archive = 1;
 
-        $category->save();
+        if($category->save()){
+            $result = true;
+        }
+        
+        
+        return Response()->json(compact('result'));
     }
 
     public function updateCategoryName(Request $request){
+
+        $result = false;
+
         $category = Category::find($request->id);
         $category->name = $request->name;
+        
+        if($category->save()){
+            $result = true;
+        }
 
-        $category->save();
+        return Response()->json(compact('result'));   
     }
 }
