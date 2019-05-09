@@ -55,7 +55,7 @@ class CategoryController extends Controller
         return Response()->json(compact('result'));
     }
 
-    public function updateCategoryName(Request $request){
+    public function updateCategory(Request $request){
 
         $result = false;
 

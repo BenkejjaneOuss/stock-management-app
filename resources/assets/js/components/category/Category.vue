@@ -11,7 +11,7 @@
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ref="closeModal">×</button>
                             </div>
-                            <form method="post" @submit.prevent="onCreate">
+                            <form class="form-horizontal" method="post" @submit.prevent="onCreate">
                                 <div class="modal-body">
                                     <div :class="{'form-group': true, 'has-danger': errors.has('name') }">
                                         <div class="col-md-12 m-b-20">
