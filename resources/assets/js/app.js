@@ -33,7 +33,7 @@ require( 'datatables.net-buttons/js/buttons.html5.js' );
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('category', require('./components/category/Category.vue'));
+Vue.component('category', require('./components/category/Category.vue').default);
 Vue.mixin(HelperMixin)
 const app = new Vue({
     el: '#app'
