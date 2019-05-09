@@ -34,6 +34,8 @@ require( 'datatables.net-buttons/js/buttons.html5.js' );
  */
 
 Vue.component('category', require('./components/category/Category.vue').default);
+Vue.component('client', require('./components/client/Client.vue').default);
+
 Vue.mixin(HelperMixin)
 const app = new Vue({
     el: '#app'

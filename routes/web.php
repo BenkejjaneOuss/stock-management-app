@@ -34,7 +34,7 @@ Route::put('/updateProductCategory', 'ProductController@updateProductCategory');
 Route::get('/category', 'CategoryController@index')->name('category');
 Route::post('/addCategory', 'CategoryController@addCategory')->name('category.add');
 Route::delete('/deleteCategory/{id}', 'CategoryController@deleteCategory')->name('category.delete');
-Route::put('/updateCategoryName', 'CategoryController@updateCategoryName')->name('category.update');
+Route::put('/updateCategory', 'CategoryController@updateCategory')->name('category.update');
 
 
 Route::get('/supplier', 'SupplierController@index')->name('supplier');
@@ -47,12 +47,10 @@ Route::put('/updateSupplierAddress', 'SupplierController@updateSupplierAddress')
 
 
 Route::get('/client', 'ClientController@index')->name('client');
-Route::post('/addClient', 'ClientController@addClient');
-Route::delete('/deleteClient/{id}', 'ClientController@deleteClient');
-Route::put('/updateClientName', 'ClientController@updateClientName');
-Route::put('/updateClientEmail', 'ClientController@updateClientEmail');
-Route::put('/updateClientPhone', 'ClientController@updateClientPhone');
-Route::put('/updateClientAddress', 'ClientController@updateClientAddress');
+Route::post('/addClient', 'ClientController@addClient')->name('client.add');
+Route::delete('/deleteClient/{id}', 'ClientController@deleteClient')->name('client.delete');
+Route::put('/updateClient', 'ClientController@updateClient')->name('client.update');
+
 
 
 Route::get('/product-purchase', 'ProductPurchaseController@index')->name('product_purchase');
