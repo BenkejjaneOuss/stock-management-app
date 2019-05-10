@@ -27,7 +27,7 @@
                                         </div>
                                         <div :class="{'form-group': true, 'has-danger': errors.has('phone') }">
                                             <div class="col-md-12 m-b-20">
-                                            <input name="phone" v-model="form.phone" :class="{'form-control': true, 'form-control-danger': errors.has('phone') }" type="text" placeholder="Phone">
+                                            <input name="phone" v-model="form.phone" v-validate="'numeric|min:10'" :class="{'form-control': true, 'form-control-danger': errors.has('phone') }" type="text" placeholder="Phone">
                                             <small v-show="errors.has('phone')" class="form-control-feedback">{{ errors.first('phone') }}</small>
                                             </div>
                                         </div>
