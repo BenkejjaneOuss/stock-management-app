@@ -38,12 +38,9 @@ Route::put('/updateCategory', 'CategoryController@updateCategory')->name('catego
 
 
 Route::get('/supplier', 'SupplierController@index')->name('supplier');
-Route::post('/addSupplier', 'SupplierController@addSupplier');
-Route::delete('/deleteSupplier/{id}', 'SupplierController@deleteSupplier');
-Route::put('/updateSupplierName', 'SupplierController@updateSupplierName');
-Route::put('/updateSupplierEmail', 'SupplierController@updateSupplierEmail');
-Route::put('/updateSupplierPhone', 'SupplierController@updateSupplierPhone');
-Route::put('/updateSupplierAddress', 'SupplierController@updateSupplierAddress');
+Route::post('/addSupplier', 'SupplierController@addSupplier')->name('supplier.add');
+Route::delete('/deleteSupplier/{id}', 'SupplierController@deleteSupplier')->name('supplier.delete');
+Route::put('/updateSupplier', 'SupplierController@updateSupplier')->name('supplier.update');
 
 
 Route::get('/client', 'ClientController@index')->name('client');

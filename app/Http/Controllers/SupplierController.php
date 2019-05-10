@@ -25,51 +25,55 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        $suppliers = Supplier::where('archive', 0)->get(); 
+        $suppliers = Supplier::where('archive', 0)->orderBy('created_at', 'desc')->get(); 
         return view('supplier',compact('suppliers'));
     }
 
     public function addSupplier(Request $request){
+
+        $result = false;
+
         $supplier = new Supplier();
         $supplier->name = $request->name;
         $supplier->email = $request->email;
         $supplier->phone = $request->phone;
         $supplier->address = $request->address;
         
-        $supplier->save();
-        return redirect('/supplier');      
+        if($supplier->save()){
+            $result = true;
+        }
+
+        return Response()->json(compact('result','supplier'));        
     }
 
     public function deleteSupplier($id){
+
+        $result = false;
         $supplier = Supplier::find($id);
         $supplier->archive = 1;
 
-        $supplier->save();
+        if($supplier->save()){
+            $result = true;
+        }
+        
+        
+        return Response()->json(compact('result'));
     }
 
-    public function updateSupplierName(Request $request){
+    public function updateSupplier(Request $request){
+        $result = false;
+
         $supplier = Supplier::find($request->id);
         $supplier->name = $request->name;
-
-        $supplier->save();
-    }
-
-    public function updateSupplierEmail(Request $request){
-        $supplier = Supplier::find($request->id);
         $supplier->email = $request->email;
-
-        $supplier->save();
-    }
-    public function updateSupplierPhone(Request $request){
-        $supplier = Supplier::find($request->id);
         $supplier->phone = $request->phone;
-
-        $supplier->save();
-    }
-    public function updateSupplierAddress(Request $request){
-        $supplier = Supplier::find($request->id);
         $supplier->address = $request->address;
+        
+        if($supplier->save()){
+            $result = true;
+        }
 
-        $supplier->save();
+        return Response()->json(compact('result'));   
     }
+
 }
