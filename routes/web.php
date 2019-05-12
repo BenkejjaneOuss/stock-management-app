@@ -22,13 +22,9 @@ Route::post('/Earning', 'HomeController@Earning');
 
 
 Route::get('/product', 'ProductController@index')->name('product');
-Route::post('/addProduct', 'ProductController@addProduct');
-Route::post('/addCategoryInProduct', 'ProductController@addCategoryInProduct');
-Route::delete('/deleteProduct/{id}', 'ProductController@deleteProduct');
-Route::put('/updateProductRef', 'ProductController@updateProductRef');
-Route::put('/updateProductDesignation', 'ProductController@updateProductDesignation');
-Route::put('/updateProductQteAlert', 'ProductController@updateProductQteAlert');
-Route::put('/updateProductCategory', 'ProductController@updateProductCategory');
+Route::post('/addProduct', 'ProductController@addProduct')->name('product.add');
+Route::delete('/deleteProduct/{id}', 'ProductController@deleteProduct')->name('product.delete');
+Route::put('/updateProduct', 'ProductController@updateProduct')->name('product.update');
 
 
 Route::get('/category', 'CategoryController@index')->name('category');

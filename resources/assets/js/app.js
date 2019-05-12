@@ -36,6 +36,7 @@ require( 'datatables.net-buttons/js/buttons.html5.js' );
 Vue.component('category', require('./components/category/Category.vue').default);
 Vue.component('client', require('./components/client/Client.vue').default);
 Vue.component('supplier', require('./components/supplier/Supplier.vue').default);
+Vue.component('product_list', require('./components/product/ProductList.vue').default);
 
 Vue.mixin(HelperMixin)
 const app = new Vue({

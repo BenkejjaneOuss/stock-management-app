@@ -7,8 +7,15 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+@import "~selectize/dist/css/selectize.bootstrap3.css";
 
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+.selectize-input {
+  border: 1px solid #e9ecef;
+}
+.has-error .selectize-input {
+  border-color: #f62d51;
 }

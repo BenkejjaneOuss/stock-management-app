@@ -21,7 +21,6 @@
     @yield('CssPlugins')
     <!--Selectize -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.default.min.css" rel="stylesheet">
     <!--End selectize -->
     <!-- ============================================================== -->
     <!-- End This page Css -->
