@@ -23,9 +23,9 @@ A simple stock management with Laravel/Vue Js.
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
-DB_DATABASE=homestead
-DB_USERNAME=homestead
-DB_PASSWORD=secret
+DB_DATABASE=YourDatabaseName
+DB_USERNAME=YourUsername
+DB_PASSWORD=YourPassword
   ```
   3-Run `composer install`
   
