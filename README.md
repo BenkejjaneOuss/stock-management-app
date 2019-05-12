@@ -1,15 +1,8 @@
 # stock-management-app
 A simple stock management with Laravel/Vue Js.
-
-# Techstack
-  - Laravel 5.5
-  - JS
-  - Laravel Mix
-  - Bootstrap
-  - webpack
-  - node Modules
   
-# Features
+## Features
+  - Authentication
   - Stock Adding
   - Stock Manage / Edit / Add stock
   - PDF/Excel Generate
@@ -20,6 +13,8 @@ A simple stock management with Laravel/Vue Js.
 
 ## Setup
 
+  After you clone this project:
+  
   1- Run `cp .env.example .env` to create a `.env` file
   
   2-Setup your Database information to your `.env` file :
