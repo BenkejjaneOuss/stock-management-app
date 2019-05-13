@@ -90,6 +90,12 @@
                         <!-- User profile and search -->
                         <!-- ============================================================== -->
                         <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();" aria-haspopup="true" aria-expanded="false"><i class="ti-power-off"></i></a>
+                                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                                            @csrf
+                                                        </form>
+                            <!--
                             <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="assets/images/logo/logo.png" alt="user" class="img-circle" width="30"></a>
                             <div class="dropdown-menu dropdown-menu-right user-dd animated flipInY">
                                 <span class="with-arrow"><span class="bg-primary"></span></span>
@@ -109,7 +115,7 @@
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     @csrf
                                 </form>
-                            </div>
+                            </div>-->
                         </li>
                         <!-- ============================================================== -->
                         <!-- User profile and search -->
@@ -135,30 +141,30 @@
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
-                        <li><a class="waves-effect waves-dark" href="{{ route('home') }}" aria-expanded="false"><i class="ti-stats-up"></i><span class="hide-menu">Dashboard</span></a>
+                        <!--<li><a class="waves-effect waves-dark" href="{{ route('home') }}" aria-expanded="false"><i class="ti-stats-up"></i><span class="hide-menu">Dashboard</span></a>
+                        </li>-->
+                        <li><a class="waves-effect waves-dark" href="{{ route('product') }}" aria-expanded="false"><i class="ti-package"></i><span class="hide-menu">Product</span></a>
                         </li>
-                        <li><a class="waves-effect waves-dark" href="{{ route('product') }}" aria-expanded="false"><i class="ti-package"></i><span class="hide-menu">Produits</span></a>
-                        </li>
-                        <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-settings"></i><span class="hide-menu">Opérations</span></a>
+                        <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-settings"></i><span class="hide-menu">Dealings</span></a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a href="{{ route('productPurchase') }}">Achat des produits</a></li>
-                                <li><a href="{{ route('product_sale') }}">Vente des produits</a></li>
+                                <li><a href="{{ route('productPurchase') }}">Purchase</a></li>
+                                <li><a href="{{ route('productSale') }}">Sale</a></li>
                             </ul>
                         </li>
                         <li><a class="waves-effect waves-dark" href="{{ route('category') }}" aria-expanded="false"><i class="ti-layout-grid3"></i><span class="hide-menu">Categories</span></a>
                         </li>
                         <li><a class="waves-effect waves-dark" href="{{ route('client') }}" aria-expanded="false"><i class="ti-user"></i><span class="hide-menu">Clients</span></a>
                         </li>
-                        <li><a class="waves-effect waves-dark" href="{{ route('supplier') }}" aria-expanded="false"><i class="ti-truck"></i><span class="hide-menu">Fournisseurs</span></a>
+                        <li><a class="waves-effect waves-dark" href="{{ route('supplier') }}" aria-expanded="false"><i class="ti-truck"></i><span class="hide-menu">Suppliers</span></a>
                         </li>
                         
-                        <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-credit-card"></i><span class="hide-menu">Recharges</span></a>
+                        <!--<li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-credit-card"></i><span class="hide-menu">Recharges</span></a>
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="{{ route('num_phone') }}">Numéros du dealer</a></li>
                                 <li><a href="{{ route('recharge_purchase') }}">Recharges achtées</a></li>
                                 <li><a href="{{ route('recharge_sale') }}">Recharges vendues</a></li>
                             </ul>
-                        </li>
+                        </li>-->
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->

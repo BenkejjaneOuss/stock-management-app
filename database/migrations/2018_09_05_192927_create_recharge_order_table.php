@@ -19,6 +19,7 @@ class CreateRechargeOrderTable extends Migration
             $table->string('num_client');
             $table->integer("num_phone_id")->unsigned();
             $table->foreign('num_phone_id')->references('id')->on('num_phone');
+            $table->integer('archive')->default(0);
             $table->timestamps();
         });
     }

@@ -3,9 +3,8 @@
         <div class="row page-titles">
             <div class="col-md-12 align-self-center">
                 <div class="d-flex justify-content-end align-items-center">
-                    <button type="button" class="btn btn-info d-lg-block m-l-15" data-toggle="modal" data-target="#add-product" @click="cancel"><i class="fa fa-plus-circle"></i> New product</button>
-                    <input type="hidden" class="btn btn-info d-lg-block m-l-15" data-toggle="modal" data-target="#add-product" ref="showModal" >
-                    <div id="add-product" class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <button type="button" class="btn btn-info d-lg-block m-l-15" data-toggle="modal" data-target="#add-productSale" @click="cancel"><i class="fa fa-plus-circle"></i> New sale</button>
+                    <div id="add-productSale" class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -13,30 +12,32 @@
                                 </div>
                                 <form class="form-horizontal" method="post" @submit.prevent="onCreate">
                                     <div class="modal-body">
-                                        <div :class="{'form-group': true, 'has-error has-danger': errors.has('category_id') }">
+                                        <div :class="{'form-group': true, 'has-error has-danger': errors.has('product_id') }">
                                             <div class="col-md-12 m-b-20">
-                                            <selectize name="category_id" v-model="form.category_id" :settings="settings" v-validate="'required'" > 
-                                                <option v-for="option in optionsCategories" :value="option.value">{{ option.text }}</option>
+                                            <selectize name="product_id" v-model="form.product_id" :settings="settings" v-validate="'required'" data-vv-as="Product"> 
+                                                <option v-for="option in optionsProducts" :value="option.value">{{ option.text }}</option>
                                             </selectize>
-                                            <small v-show="errors.has('category_id')" class="form-control-feedback">{{ errors.first('category_id') }}</small>
+                                            <small v-show="errors.has('product_id')" class="form-control-feedback">{{ errors.first('product_id') }}</small>
                                             </div>
                                         </div>
-                                        <div :class="{'form-group': true, 'has-danger': errors.has('ref') }">
+                                        <div :class="{'form-group': true, 'has-danger': errors.has('qte') }">
                                             <div class="col-md-12 m-b-20">
-                                            <input name="ref" v-model="form.ref" v-validate="'required'" :class="{'form-control': true, 'form-control-danger': errors.has('ref') }" type="text" placeholder="Reference">
-                                            <small v-show="errors.has('ref')" class="form-control-feedback" data-vv-as="Reference">{{ errors.first('ref') }}</small>
+                                            <input name="qte" v-model="form.qte" v-validate="'required|numeric'" :class="{'form-control': true, 'form-control-danger': errors.has('qte') }" type="text" placeholder="Quantity" data-vv-as="Quantity">
+                                            <small v-show="errors.has('qte')" class="form-control-feedback">{{ errors.first('qte') }}</small>
                                             </div>
                                         </div>
-                                        <div :class="{'form-group': true, 'has-danger': errors.has('designation') }">
+                                        <div :class="{'form-group': true, 'has-danger': errors.has('selling_price') }">
                                             <div class="col-md-12 m-b-20">
-                                            <input name="designation" v-model="form.designation" v-validate="'required'" :class="{'form-control': true, 'form-control-danger': errors.has('designation') }" type="text" placeholder="Designation">
-                                            <small v-show="errors.has('designation')" class="form-control-feedback">{{ errors.first('designation') }}</small>
+                                            <input name="selling_price" v-model="form.selling_price" v-validate="'required|decimal:2'" :class="{'form-control': true, 'form-control-danger': errors.has('purchasing_price') }" type="text" placeholder="Selling price" data-vv-as="Selling price">
+                                            <small v-show="errors.has('selling_price')" class="form-control-feedback">{{ errors.first('selling_price') }}</small>
                                             </div>
                                         </div>
-                                        <div :class="{'form-group': true, 'has-danger': errors.has('qte_alert') }">
+                                        <div :class="{'form-group': true, 'has-error has-danger': errors.has('client_id') }">
                                             <div class="col-md-12 m-b-20">
-                                            <input name="qte_alert" v-model="form.qte_alert" v-validate="'required|numeric'" :class="{'form-control': true, 'form-control-danger': errors.has('qte_alert') }" type="text" placeholder="Quantity of alert" data-vv-as="Quantity of alert">
-                                            <small v-show="errors.has('qte_alert')" class="form-control-feedback">{{ errors.first('qte_alert') }}</small>
+                                            <selectize name="client_id" v-model="form.client_id" :settings="settings" v-validate="'required'" data-vv-as="Client"> 
+                                                <option v-for="option in optionsClients" :value="option.value">{{ option.text }}</option>
+                                            </selectize>
+                                            <small v-show="errors.has('client_id')" class="form-control-feedback">{{ errors.first('client_id') }}</small>
                                             </div>
                                         </div>
                                     </div>
@@ -66,7 +67,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">List of products</h4>
+                    <h4 class="card-title">Sales list</h4>
                     <h6 class="card-subtitle"></h6>
                     <div class="table-responsive m-t-40">
                         <table id="example23" class="display nowrap table table-hover table-striped" cellspacing="0" width="100%">
@@ -77,11 +78,9 @@
                                     <th>Designation</th>
                                     <th>Category</th>
                                     <th>Qty</th>
-                                    <th>Qty_alert</th>
-                                    <th>Purchasing price</th>
                                     <th>Selling price</th>
+                                    <th>Client</th>
                                     <th>Created Date</th>
-                                    <th>Actions</th>
                                 </tr>
                             </thead>
                             <tfoot>
@@ -91,28 +90,21 @@
                                     <th>Designation</th>
                                     <th>Category</th>
                                     <th>Qty</th>
-                                    <th>Qty_alert</th>
-                                    <th>Purchasing price</th>
                                     <th>Selling price</th>
+                                    <th>Client</th>
                                     <th>Created Date</th>
-                                    <th>Actions</th>
                                 </tr>
                             </tfoot>
                             <tbody>
-                                <tr v-for="(product, index) in products">
+                                <tr v-for="(productSale, index) in productsSale">
                                     <td>{{index+1}}</td>
-                                    <td>{{product.ref ? product.ref : '-'}}</td>
-                                    <td>{{product.designation ? product.designation : '-'}}</td>
-                                    <td>{{product.category ? product.category.name : '-'}}</td>
-                                    <td>{{product.qte ? product.qte : 0}}</td>
-                                    <td>{{product.qte_alert ? product.qte_alert : 0}}</td>
-                                    <td>{{product.purchasing_price ? product.purchasing_price : 0}}</td>
-                                    <td>{{product.total_price ? product.total_price : 0}}</td>
-                                    <td>{{product.created_at}}</td>
-                                    <td>
-                                    <button type="submit" @click="onEdit(product)" class="btn btn-sm btn-icon btn-pure btn-outline delete-row-btn"><i class="ti-pencil-alt" aria-hidden="true"></i></button>
-                                    <button type="submit" @click="onDelete(product)" class="btn btn-sm btn-icon btn-pure btn-outline delete-row-btn"><i class="ti-close" aria-hidden="true"></i></button>
-                                    </td>
+                                    <td>{{productSale.product ? productSale.product.ref : '-'}}</td>
+                                    <td>{{productSale.product ? productSale.product.designation : '-'}}</td>
+                                    <td>{{productSale.product.category ? productSale.product.category.name : '-'}}</td>
+                                    <td>{{productSale.qte ? productSale.qte : 0}}</td>
+                                    <td>{{productSale.selling_price ? productSale.selling_price : 0}}</td>
+                                    <td>{{productSale.client ? productSale.client.name : 0}}</td>
+                                    <td>{{productSale.created_at}}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -127,30 +119,36 @@
 <script>
 import Selectize from 'vue2-selectize'
 export default {
-    props:['response','categories'],
+    props:['response','clients','products'],
     components: {
         Selectize
     },
     data () {
         return {
             edit:false,
-            products:[],
+            productsSale:[],
             form:{
-                category_id:null,
-                ref:'',
-                designation:'',
-                qte_alert:''
+                product_id:null,
+                client_id:null,
+                qte:'',
+                selling_price:'',
             },
             settings: {},
-            optionsCategories:[
-				{value:null, text:'Select a category'},
+            optionsClients:[
+				{value:null, text:'Select a client'},
+        	], 
+            optionsProducts:[
+				{value:null, text:'Select a product'},
         	], 
         }
     },
     created(){
-        this.products = this.response;
-        for(let index in this.categories) {
-            this.optionsCategories.push({'value':this.categories[index].id, 'text':this.categories[index].name});
+        this.productsSale = this.response;
+        for(let index in this.clients) {
+            this.optionsClients.push({'value':this.clients[index].id, 'text':this.clients[index].name});
+        }
+        for(let index in this.products) {
+            this.optionsProducts.push({'value':this.products[index].id, 'text':this.products[index].ref  +" / "+ this.products[index].designation });
         }
         			
     },
@@ -162,20 +160,20 @@ export default {
             {
                 extend: 'copy',
                 exportOptions: {
-                    columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8]
+                    columns: [ 0, 1, 2, 3, 4, 5, 6, 7]
                 }
             },
 
             {
                 extend: 'excel',
                 exportOptions: {
-                    columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8]
+                    columns: [ 0, 1, 2, 3, 4, 5, 6, 7]
                 }
             },
             {
                 extend: 'print',
                 exportOptions: {
-                    columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8]
+                    columns: [ 0, 1, 2, 3, 4, 5, 6, 7]
                 },
             },
             ],
@@ -184,19 +182,18 @@ export default {
     methods:{
         cancel(){
             this.form = {
-                category_id:null,
-                ref:'',
-                designation:'',
-                qte_alert:''
+                product_id:null,
+                client_id:null,
+                qte:'',
+                selling_price:'',
             }
             this.$validator.reset();
-            this.edit = false;
         },
         onCreate() {
             this.$validator.validateAll().then(result => {
                 if (!this.errors.any()) {
                     this.loading = true
-                    axios.post(route('product.add'), this.form).then(res => {
+                    axios.post(route('productSale.add'), this.form).then(res => {
     
                         this.loading = false
                         let type = 'error'
@@ -204,15 +201,15 @@ export default {
                         let text = (res.data.msg !== '') ? res.data.msg : 'Please retry later'
 
                         if(res.data.result) {
-                            this.products.unshift(res.data.newProduct);
+                            this.productsSale.unshift(res.data.newProductSale);
                             type="success"
-                            title = 'Added!'
-                            text = "Your product has been added."
+                            title = 'Sold!'
+                            text = "Your product has been sold."
                             this.form = {
-                                category_id:null,
-                                ref:'',
-                                designation:'',
-                                qte_alert:''
+                                product_id:null,
+                                client_id:null,
+                                qte:'',
+                                selling_price:'',
                             }      
                             this.$refs.closeModal.click()
                             this.$validator.reset();
@@ -235,100 +232,6 @@ export default {
                         this.loading = false
                     })
 
-                }
-            })
-        },
-        onEdit(product) {
-            this.edit = true;
-            this.form = product;
-            this.$refs.showModal.click()
-        },
-        onUpdate() {
-            this.$validator.validateAll().then(result => {
-                if (!this.errors.any()) {
-                    this.loading = true
-                    axios.put(route('product.update'), this.form).then(res => {
-
-                        this.loading = false
-                        let type = 'error'
-                        let title = 'Error!'
-                        let text = (res.data.msg !== '') ? res.data.msg : 'Please retry later'
-
-                        if(res.data.result) {
-                            this.products = res.data.products
-                            type="success"
-                            title = 'Updated!'
-                            text = 'Your product has been updated.'
-                            this.form = {
-                                category_id:null,
-                                ref:'',
-                                designation:'',
-                                qte_alert:''
-                            }      
-                            this.$refs.closeModal.click()
-                            this.$validator.reset();
-                        }
-
-                        this.$swal.fire({
-                            type: type,
-                            title: title,
-                            text: text,
-                            showConfirmButton: false,
-                            showCloseButton: true,
-                        })
-                        
-                        
-                        //this.form = res.data.result;
-
-                    }).catch(e => {
-                        console.log('createForm', e)
-                        this.loading = false
-                    })
-                }
-            })
-        },
-        onDelete(product) {
-            this.$swal.fire({
-                title: 'Are you sure?',
-                type: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!',
-            }).then((result) => {
-                if (result.value) {
-                    axios.delete(route('product.delete', product.id)).then(res => {
-
-                        this.loading = false
-                        let type = 'error'
-                        let title = 'Error!'
-                        let text = (res.data.msg !== '') ? res.data.msg : 'Please retry later'
-
-                        if(res.data.result) {
-                            var position = this.products.indexOf(product);
-                            this.products.splice(position, 1);
-
-                            type = "success"
-                            title = 'Deleted!'
-                            text = "Your product has been deleted."
-                            this.edit = false;
-                        }
-
-                        this.$swal.fire({
-                            type: type,
-                            title: title,
-                            text: text,
-                            showConfirmButton: false,
-                            showCloseButton: true,
-                        })
-                    
-                    
-                    //this.form = res.data.result;
-
-                    }).catch(e => {
-                        console.log('createForm', e)
-                        this.loading = false
-                    })  
                 }
             })
         },

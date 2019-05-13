@@ -8,6 +8,7 @@ use  \App\Product;
 use  \App\Category;
 use  \App\Supplier;
 use  \App\Client;
+use DB;
 
 class ProductSaleController extends Controller
 {
@@ -29,43 +30,62 @@ class ProductSaleController extends Controller
      */
     public function index()
     {
-
-        $products_sale = Product_Sale::with('products')->with('clients')->get(); 
+        $products_sale = Product_Sale::with(['product' => function($query) {
+                                                $query->with('category');
+                                            }])
+                                            ->with('client')
+                                            ->orderBy('created_at', 'desc')
+                                            ->get(); 
         $products = Product::where('archive', 0)->get();
-        $categorys = Category::where('archive', 0)->get();
-        $suppliers = Supplier::where('archive', 0)->get();
         $clients = Client::where('archive', 0)->get();
-        return view('product_sale',compact('products_sale','products','categorys','suppliers','clients'));
+        return view('product_sale',compact('products_sale','products','clients'));
     }
     
-    public function addProduct(Request $request){
-        $product = new Product();
-        $product->ref = $request->ref;
-        $product->designation = $request->designation;
-        $product->qte_alert = $request->qte_alert;
-        $product->category_id = $request->category_id;
-
-        $product->save();
-        return redirect('/product-sale');      
-    }
 
     public function addProductSale(Request $request){
-        $product = Product::find($request->product_id);
-        if($request->qte <= $product->qte){
+
+        $result = false;
+        DB::beginTransaction();
+
+        try{
             $product_sale = new Product_Sale();
             $product_sale->qte = $request->qte;
             $product_sale->product_id = $request->product_id;
             $product_sale->selling_price = $request->selling_price;
             $product_sale->client_id = $request->client_id;
             $product_sale->save();
-    
+
+            $product = Product::find($request->product_id);
             $product->qte = $product->qte - $request->qte;
             $product->total_price -= $request->selling_price * $request->qte;
             $product->save();
-            return redirect('/product-sale');  
-        }else{
-            return redirect()->back()->with('error', ['your message,here']);   
-        }
+        
+            if($product->save()){
+                $result = true;
+                $newProductSale = Product_Sale::where('id', $product_sale->id)
+                                                ->with(['product' => function($query) {
+                                                    $query->with('category');
+                                                }])
+                                                ->with('client')
+                                                ->first(); 
+            }
+        } catch (ValidationException $e) {
+
+            // ROllback and then redirect
+            // Back with error
+            DB::rollback();
+
+        } catch (\Exception $e) {
+
+            DB::rollback();
+            throw $e;
+        }   
+
+    // COMMIT THE QUERIES (POURCENT AND POSTULER)
+        DB::commit();
+
+        return Response()->json(compact('result','newProductSale')); 
+        
     }
 
 }

@@ -51,9 +51,8 @@ Route::post('/addProductPurchase', 'ProductPurchaseController@addProductPurchase
 
 
 
-Route::get('/product-sale', 'ProductSaleController@index')->name('product_sale');
-Route::post('/addProductSale', 'ProductSaleController@addProductSale');
-Route::post('/addProductS', 'ProductSaleController@addProduct');
+Route::get('/product-sale', 'ProductSaleController@index')->name('productSale');
+Route::post('/addProductSale', 'ProductSaleController@addProductSale')->name('productSale.add');
 
 /*
 Route::get('/operator', 'OperatorController@index')->name('operator');

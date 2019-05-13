@@ -31,12 +31,10 @@ DB_PASSWORD=YourPassword
   
   4-Run `php artisan key:generate`
   
-  5-Run `php artisan migrate`
+  5-Run `php artisan migrate --seed`
+      
+  6-Run `npm install`
   
-  6-Run `php artisan db:seed`
-    
-  7-Run `npm install`
+  7-Run `npm run watch`
   
-  8-Run `npm run watch`
-  
-  9-Run `php artisan serve` and your app will be running on `localhost:8000`
+  8-Run `php artisan serve` and your app will be running on `localhost:8000`

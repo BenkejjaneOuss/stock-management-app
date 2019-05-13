@@ -34,22 +34,7 @@ class HomeController extends Controller
 
     public function index()
     {   
-        $products = Product::where('archive', 0)->get();
-        $productsCount = Product::where('archive', 0)->count();
-        $clientsCount = Client::where('archive', 0)->count();
-        $suppliersCount = Supplier::where('archive', 0)->count();
-        $orangeCount = Num_Phone::where('archive', 0)->where('operator_id', 1)->get();
-        $iamCount = Num_Phone::where('archive', 0)->where('operator_id', 2)->get();
-        $inwiCount = Num_Phone::where('archive', 0)->where('operator_id', 3)->get();
-        $now = Carbon::now();
-        $productsSaleToday = Product_Sale::whereDate('created_at', Carbon::today())->with('products')->get();
-        $productsSaleYesterday = Product_Sale::whereDate('created_at', Carbon::yesterday())->with('products')->get();
-        $productsSaleWeek = Product_Sale::whereBetween('created_at', [Carbon::now()->startOfWeek(),Carbon::now()->endOfWeek()])->with('products')->get();
-        $productsSaleMonth = Product_Sale::whereYear('created_at', $now->year)->whereMonth('created_at', $now->month)->with('products')->get();
-        $productsAlert = Product::where('archive', 0)->whereColumn('qte', 'qte_alert')->with('categorys')->get();
-        $productsAlert_count = $productsAlert->count();
-        $productsTotalSales = Product_Sale::count();
-        return view('home',compact('products','productsCount','clientsCount','suppliersCount','orangeCount','iamCount','inwiCount','productsSaleToday','productsSaleYesterday','productsSaleWeek','productsSaleMonth','productsAlert','productsAlert_count','productsTotalSales'));
+        return redirect('/product');
     }
     public function Earning(Request $rqt){
         $validator = Validator::make($rqt->all(), [

@@ -16,10 +16,12 @@ class CreateProductOrderTable extends Migration
         Schema::create('product_sale', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('qte');
+            $table->double('selling_price', 20, 2);
             $table->integer("client_id")->unsigned();
             $table->foreign('client_id')->references('id')->on('clients');
             $table->integer("product_id")->unsigned();
             $table->foreign('product_id')->references('id')->on('products');
+            $table->integer('archive')->default(0);
             $table->timestamps();
         });
     }

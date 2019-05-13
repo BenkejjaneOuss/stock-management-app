@@ -19,6 +19,7 @@ class CreateNumPhoneTable extends Migration
             $table->string('number');
             $table->integer("operator_id")->unsigned();
             $table->foreign('operator_id')->references('id')->on('operator');
+            $table->integer('archive')->default(0);
             $table->timestamps();
         });
     }
