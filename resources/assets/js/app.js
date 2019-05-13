@@ -37,6 +37,8 @@ Vue.component('category', require('./components/category/Category.vue').default)
 Vue.component('client', require('./components/client/Client.vue').default);
 Vue.component('supplier', require('./components/supplier/Supplier.vue').default);
 Vue.component('product_list', require('./components/product/ProductList.vue').default);
+Vue.component('product_purchase', require('./components/product/ProductPurchase.vue').default);
+Vue.component('product_sale', require('./components/product/ProductSale.vue').default);
 
 Vue.mixin(HelperMixin)
 const app = new Vue({

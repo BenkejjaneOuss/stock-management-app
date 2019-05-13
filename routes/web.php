@@ -46,9 +46,9 @@ Route::put('/updateClient', 'ClientController@updateClient')->name('client.updat
 
 
 
-Route::get('/product-purchase', 'ProductPurchaseController@index')->name('product_purchase');
-Route::post('/addProductPurchase', 'ProductPurchaseController@addProductPurchase');
-Route::post('/addProductP', 'ProductPurchaseController@addProduct');
+Route::get('/product-purchase', 'ProductPurchaseController@index')->name('productPurchase');
+Route::post('/addProductPurchase', 'ProductPurchaseController@addProductPurchase')->name('productPurchase.add');
+
 
 
 Route::get('/product-sale', 'ProductSaleController@index')->name('product_sale');

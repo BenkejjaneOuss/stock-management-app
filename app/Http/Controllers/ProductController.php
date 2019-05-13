@@ -49,13 +49,6 @@ class ProductController extends Controller
 
         return Response()->json(compact('result','newProduct')); 
     }
-    public function addCategoryInProduct(Request $request){
-        $category = new Category();
-        $category->name = $request->name;
-        
-        $category->save();
-        return redirect('/product');      
-    }
 
     public function deleteProduct($id){
 
