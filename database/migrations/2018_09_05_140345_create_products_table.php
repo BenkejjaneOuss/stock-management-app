@@ -17,7 +17,7 @@ class CreateProductsTable extends Migration
             $table->increments('id');
             $table->string('ref');
             $table->string('designation');
-            $table->integer('qte');
+            $table->integer('qte')->default(0);
             $table->integer('qte_alert');
             $table->double('purchasing_price', 20, 2)->default(0.00);
             $table->double('total_price', 20, 2)->default(0.00);
